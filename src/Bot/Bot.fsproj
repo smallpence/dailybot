@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Util.fs" />
+    <Compile Include="Environment.fs" />
+    <Compile Include="Logging.fs" />
+    <Compile Include="Database.fs" />
+    <Compile Include="Leaderboard.fs" />
+    <Compile Include="Commands.fs" />
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DSharpPlus" Version="4.1.0" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.1.0" />
+    <PackageReference Include="FSharp.Data" Version="4.2.4" />
+    <PackageReference Include="mongocsharpdriver" Version="2.13.2" />
+  </ItemGroup>
+
+</Project>

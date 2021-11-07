@@ -1,0 +1,6 @@
+appsecrets.json
+appsettings.json
+log
+
+bin/
+obj/
