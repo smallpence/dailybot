@@ -91,9 +91,12 @@ module Leaderboard =
     }
 
     let UpdateLeaderboard (client: DiscordClient) (embed: DiscordEmbed) (channel: DiscordChannel) = async {
-        match! TryFetchLastMessage channel client.CurrentUser.Id with
-        | Some message -> do! message.ModifyAsync(Optional.FromValue embed) |> Async.AwaitTask |> Async.Ignore
-        | None -> do! channel.SendMessageAsync(embed) |> Async.AwaitTask |> Async.Ignore
+        try
+            match! TryFetchLastMessage channel client.CurrentUser.Id with
+            | Some message -> do! message.ModifyAsync(Optional.FromValue embed) |> Async.AwaitTask |> Async.Ignore
+            | None -> do! channel.SendMessageAsync(embed) |> Async.AwaitTask |> Async.Ignore
+        with
+        | e -> ()
     }
 
     let UpdateLeaderboards client = async {
