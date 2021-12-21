@@ -79,12 +79,15 @@ module Leaderboard =
     }
 
     let TryFetchLastMessage (channel: DiscordChannel) id = async {
-        if channel.LastMessageId.HasValue then
-            let lastId = channel.LastMessageId.Value
-            let! lastMessage = channel.GetMessageAsync(lastId) |> Async.AwaitTask
-            // dont try and edit a message that isnt mine
-            return if lastMessage.Author.Id = id then Some lastMessage else None
-        else return None
+        try 
+            if channel.LastMessageId.HasValue then
+                let lastId = channel.LastMessageId.Value
+                let! lastMessage = channel.GetMessageAsync(lastId) |> Async.AwaitTask
+                // dont try and edit a message that isnt mine
+                return if lastMessage.Author.Id = id then Some lastMessage else None
+            else return None
+        with // if message couldnt be accessed
+        | e -> return None
     }
 
     let UpdateLeaderboard (client: DiscordClient) (embed: DiscordEmbed) (channel: DiscordChannel) = async {
