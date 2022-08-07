@@ -8,7 +8,7 @@ open System
 open DSharpPlus.Entities
 
 module Main =
-    exception MyMessageException
+    exception BotMessageException
 
     let run = async {
         try
@@ -46,7 +46,7 @@ module Main =
                 async {
                     try
                         // ignore my messages (but view other bots')
-                        if args.Author.Id = client.CurrentUser.Id then raise MyMessageException
+                        if args.Author.IsBot then raise BotMessageException
                         
                         return! Commands.getCommands
                         |> List.map (fun f -> f args client) // apply context to each command
@@ -54,7 +54,7 @@ module Main =
                         |> Async.Ignore
                     with error -> 
                         match error with
-                        | MyMessageException -> ()
+                        | BotMessageException -> ()
                         | exn -> raise exn
                 } |> Async.StartAsTask :> Task
             )
