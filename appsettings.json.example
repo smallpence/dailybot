@@ -1,0 +1,22 @@
+{
+    "mongodb": {
+        "database": "database name",
+        "collections": {
+            "main": "prayer collection",
+            "alltimeLeaderboard": "alltime collection",
+            "monthlyLeaderboard": "monthly collection"
+        }
+    },
+    "channels": {
+        "leaderboard": "discord channel name"
+    },
+    "commands": {
+        "praise": "command to praise",
+        "howlong": "command to check time left till praise"
+    },
+    "display": {
+        "react": "emoji to react with",
+        "timeForMessage": "response when it is time to pray",
+        "notYetTimeForMessage": "response when it is not time to pray"
+    }
+}
